@@ -2,52 +2,39 @@ function RectObj(offSet){
   this.rotation= .523599; //0.523599 is 30 deg
   this.h=10;
   this.offset=offSet;
+  this.rectCount=this.offset*8;
   rectMode(CENTER);
-    this.angle=this.offset/.000039;
+  this.angle=this.offset/.000030;
 
     this.show = function(){
       //for (let z=0;z<width/(w);z++){
 
+      if (this.offset===0){
+          this.makeBoxes(0,0);
+      }
+      //this.makeBoxes(0,80);
+      for(let p=-this.rectCount/2;p<this.rectCount/2+1;p++){
 
-        for(let p=0;p<width/w;p++){
-          for (let i=-1; i<2;i=i+2){
-            if(this.offset===0){
-                this.makeBoxes(0,i*p);
+      let x =(sqrt(2*pow(w*this.offset,2))*cos(Math.PI*2/p));
+      let z =(sqrt(2*pow(w*this.offset,2))*sin(Math.PI*2/p));
 
-            }
-            else{
-                this.makeBoxes(i,i*p);
-
-                this.makeBoxes(i,p);
-
-                this.makeBoxes(i*i,i*p);
-
-            }
-          }
-        }
-
-  //  }
-     // if (this.offset%2===0){
-     //    rect(this.offset*w,0,w,this.h);
-     //  }
-     //  else{
-     //    rect(-this.offset*w,0,w,this.h);
-     //  }
-
+        this.makeBoxes(x,z);
+      }
     };
-    this.makeBoxes=function(i,p){
+
+    this.makeBoxes=function(x,z){
       fill(255);
       push();
       //rotateZ(this.rotation);
-      rotateX(this.rotation);
-      rotateY(this.rotation);
-//this.offset*w
-      translate(w*this.offset*i,0,p*w);
+      rotateX(radians(90));//this.rotation);
+    //  rotateY(this.rotation);
+      translate(x,0,z);
       //this.angle+=Math.PI/100;
 
-    this.calcH();
+      this.calcH();
       box(w,this.h,w);
       pop();
+
     };
 
     this.update = function(){
@@ -59,7 +46,8 @@ function RectObj(offSet){
     this.calcH=function(){
       this.h = map(sin(this.angle),-1,1,0,100);
     };
+
     this.incAngle=function(){
-      this.angle+=.1//this.offset*Math.PI*2/180;
+      this.angle+=Math.PI*2/128;//this.offset*Math.PI*2/180;
     };
 }
