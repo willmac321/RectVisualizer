@@ -8,9 +8,12 @@ function setup() {
   canv=createCanvas(400,400,WEBGL);
   ortho(-width, width, height, -height, -width*height, width*height);
   //test=new RectObj(0);
-  for(let i=0;i<width/(4*w);i++){
-    r.push(new RectObj(i));
-  };
+  r.push(new RectObj(0));
+  for(let i=0;i<width/(w);i++){
+    if(i!=0 ){
+      r.push(new RectObj(i));
+    }
+  }
 }
 
 function draw(){
