@@ -5,7 +5,7 @@ var canv;
 var test;
 var res;
 function setup() {
-  canv=createCanvas(400,400,WEBGL);
+  canv=createCanvas(windowWidth,windowHeight,WEBGL);
   ortho(-width*1.5, width*1.5, height*1.5, -height*1.5, -width*height, width*height);
   //test=new RectObj(0);
 //  r.push(new RectObj(0));
